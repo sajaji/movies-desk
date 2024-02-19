@@ -12,7 +12,7 @@ Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show'
 Route::prefix('admin')->group(function () {
     Route::get('/', [MovieAdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/movies/create', [MovieAdminController::class, 'create'])->name('admin.movies.create');
-    Route::get('/movies', [MovieAdminController::class, 'store'])->name('admin.movies.store');
+    Route::post('/movies', [MovieAdminController::class, 'store'])->name('admin.movies.store');
     Route::get('/movies/{id}/edit', [MovieAdminController::class, 'edit'])->name('admin.movies.edit');
     Route::put('/movies/{id}', [MovieAdminController::class, 'update'])->name('admin.movies.update');
     Route::delete('/movies/{id}', [MovieAdminController::class, 'destroy'])->name('admin.movies.destroy');

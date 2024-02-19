@@ -33,7 +33,7 @@ class MovieAdminController extends Controller
         // Create a new movie
         Movie::create($request->all());
 
-        return redirect()->route('admin.movies.index')->with('success', 'Movie created successfully.');
+        return redirect()->route('admin.dashboard')->with('success', 'Movie created successfully.');
     }
 
     public function edit($id)
@@ -53,7 +53,7 @@ class MovieAdminController extends Controller
         $movie = Movie::findOrFail($id);
         $movie->update($request->all());
 
-        return redirect()->route('admin.movies.index')->with('success', 'Movie updated successfully.');
+        return redirect()->route('admin.dashboard')->with('success', 'Movie updated successfully.');
     }
 
     public function destroy($id)
@@ -61,6 +61,6 @@ class MovieAdminController extends Controller
         $movie = Movie::findOrFail($id);
         $movie->delete();
 
-        return redirect()->route('admin.movies.index')->with('success', 'Movie deleted successfully.');
+        return redirect()->route('admin.dashboard')->with('success', 'Movie deleted successfully.');
     }
 }

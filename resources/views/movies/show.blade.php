@@ -15,6 +15,18 @@
                 <p><strong>Release Date:</strong> {{ $movie->release_date }}</p>
                 <p><strong>Vote Average:</strong> {{ $movie->vote_average }}</p>
                 <p><strong>Popularity:</strong> {{ $movie->popularity }}</p>
+                
+                <form action="{{ route('admin.movies.edit', $movie->id) }}" method="POST" style="display: inline;">
+                    @csrf
+                    @method('GET')
+                    <button type="submit" class="btn btn-danger">Edit</button>
+                </form>
+
+                <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
     </div>

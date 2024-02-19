@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('vote_count');
-            $table->integer('tmdb_id');
-            $table->boolean('video');
+            $table->integer('tmdb_id')->default(0);
+            $table->boolean('video')->default(0);
             $table->float('vote_average');
             $table->string('title');
             $table->float('popularity');
@@ -24,10 +24,14 @@ return new class extends Migration
             $table->string('original_language');
             $table->string('original_title');
             $table->json('genre_ids');
-            $table->boolean('adult');
+            $table->boolean('adult')->default(0);
             $table->text('overview');
             $table->date('release_date');
         });
+
+        // Schema::table('movies', function (Blueprint $table) {
+        //     $table->unsignedBigInteger('tmdb_id')->nullable()->change();
+        // });
     }
 
     /**
