@@ -7,6 +7,18 @@
         <h1 class="text-3xl font-bold text-gray-600">Create Movie</h1>
         <form action="{{ route('admin.movies.store') }}" method="POST">
             @csrf
+            <!-- title -->
+            <div class="form-group">
+                <label for="title" class="block text-gray-700">Title</label>
+                <input type="text" class="appearance-none border border-gray-300 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" id="title" name="title" required>
+            </div>
+
+            <!-- overview -->
+            <div class="form-group">
+                <label for="overview" class="block text-gray-700">Overview</label>
+                <textarea class="appearance-none border border-gray-300 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500l" id="overview" name="overview" required></textarea>
+            </div>
+            
             <!-- vote_count -->
             <div class="form-group">
                 <label for="vote_count" class="block text-gray-700">Vote Count</label>
@@ -21,18 +33,17 @@
             <!-- video -->
             <div class="form-group">
                 <label for="video" class="block text-gray-700">Video</label>
-                <input type="number" class="appearance-none border border-gray-300 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" id="video" name="video" required>
+                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" id="video" name="video" onchange="updateCheckboxValue(this)">
+                <input type="hidden" name="video" value="0">
             </div>
+
+
             <!-- vote_average -->
             <div class="form-group">
                 <label for="vote_average" class="block text-gray-700">Vote Average</label>
                 <input type="number" step="0.1" class="appearance-none border border-gray-300 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" id="vote_average" name="vote_average" required>
             </div>
-            <!-- title -->
-            <div class="form-group">
-                <label for="title" class="block text-gray-700">Title</label>
-                <input type="text" class="appearance-none border border-gray-300 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" id="title" name="title" required>
-            </div>
+            
             <!-- popularity -->
             <div class="form-group">
                 <label for="popularity" class="block text-gray-700">Popularity</label>
@@ -61,13 +72,10 @@
             <!-- adult -->
             <div class="form-group">
                 <label for="adult" class="block text-gray-700">Adult</label>
-                <input type="number" class="appearance-none border border-gray-300 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500" id="adult" name="adult" >
+                <input type="checkbox" class="form-checkbox h-5 w-5 text-gray-600" id="adult" name="adult" onchange="updateCheckboxValue(this)">
+                <input type="hidden" name="adult" value="0">
             </div>
-            <!-- overview -->
-            <div class="form-group">
-                <label for="overview" class="block text-gray-700">Overview</label>
-                <textarea class="appearance-none border border-gray-300 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:border-blue-500l" id="overview" name="overview" required></textarea>
-            </div>
+
             <!-- release_date -->
             <div class="form-group">
                 <label for="release_date" class="block text-gray-700">Release Date</label>
@@ -75,5 +83,17 @@
             </div>
             <button type="submit" class="btn btn-primary bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
         </form>
+
+        <!-- checkbox function -->
+        <script>
+            function updateCheckboxValue(checkbox) {
+                if (checkbox.checked) {
+                    checkbox.nextSibling.value = '1';
+                } else {
+                    checkbox.nextSibling.value = '0';
+                }
+            }
+        </script>
+
     </div>
 @endsection
